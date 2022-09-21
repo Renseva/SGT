@@ -10,14 +10,12 @@
 # will try 1b
 
 num_list = []
-sumsum = 0
-a = 0
+user_input = 0
 while a != "q":
-    a = input("Please enter a number, including decimals, or 'q' to quit: ")
-    if a != "q":
-        num_list.append(a)
-        for i in num_list:
-            sumsum += float(i)
-            div = len(num_list)
-            aver = str(sumsum / div)
+    user_input = input("Please enter a number, including decimals, or 'q' to quit: ")
+    if user_input != "q":
+        num_list.append(float(user_input))
+        sumsum = sum(num_list)
+        div = len(num_list)
+        aver = round(sumsum / div, 2)
         print(f"Average of {num_list} is {aver}")
