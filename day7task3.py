@@ -18,12 +18,19 @@ def get_city_year (p0, perc, delta, target_p):
             years += 1
         return years
 
-# don't know how to pass to a function numbers from one input line
-p0 = int(input("Enter current city population: "))
-perc = float(input("Enter population yearly growth (positive) or shrink (negative) whole percentage: "))
-delta = int(input("Enter the difference between numbers of people arriving and leaving the city per year:"))
-target_p = int(input("Enter desirable city population size...: "))
-print(get_city_year (p0, perc, delta, target_p))
+user_input = input("Please enter p0, perc, delta, target_p: ")
+separate = user_input.split(", ")
+a = int(separate[0])
+b = float(separate[1])
+c = int(separate[2])
+d = int(separate[3])
+print(get_city_year(a, b, c, d))
+
+# p0 = int(input("Enter current city population: "))
+# perc = float(input("Enter population yearly growth (positive) or shrink (negative) whole percentage: "))
+# delta = int(input("Enter the difference between numbers of people arriving and leaving the city per year:"))
+# target_p = int(input("Enter desirable city population size...: "))
+
 
 # for getting number before decimals:
 # a = 2.33
