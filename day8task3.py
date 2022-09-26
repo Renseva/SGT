@@ -20,4 +20,6 @@ def clean_dict_value(d, bad_val):
             new_dict[key] = value
     return new_dict
 
-print(clean_dict_value({'a': 5, 'b': 6, 'c': 5}, 5))
+print(clean_dict_value({'a': 5, 'b': 6, 'c': 5}, 5)) # short version for now non stop from 6am today want to just 'be' for several min....
+# initially tried with del, but something didnt work - I will review
+
