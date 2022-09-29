@@ -20,8 +20,8 @@ def lexi(*arg):
     set1 = set(arg[0])
     set2 = set(arg[1])
     set3 = set(arg[2])
-    set_common = set(set1 & set2)
-    return "".join(sorted(set(set_common - set(set_common & set3)))) # common btwn 1 and 2 minus common with 3
+    set_common = set1 & set2
+    return "".join(sorted(set_common - (set_common & set3))) # common btwn 1 and 2 minus common with 3
  
 print(lexi("labadiena", "labas", "lenda"))
 print(lexi("labadiena", "lenda", "labas"))
