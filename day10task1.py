@@ -17,20 +17,26 @@ class Song:
     
     def sing(self):
         print(f"{self.author} - {self.title}: ") 
-        line1, line2, line3, line4 = self.lyrics      
-        print(line1)
-        print(line2)
-        print(line3)
-        print(line4)
+        lines = list(self.lyrics)
+        for i in lines:
+            print(i)
+        # line1, line2, line3, line4 = self.lyrics      
+        # print(line1)
+        # print(line2)
+        # print(line3)
+        # print(line4)
         return self
 
     def yell(self):
         print(f"{self.author} - {self.title}: ") 
-        line1, line2, line3, line4 = self.lyrics      
-        print(line1.upper())
-        print(line2.upper())
-        print(line3.upper())
-        print(line4.upper())
+        lines = list(self.lyrics)
+        for i in lines:
+            print(i.upper())
+        # line1, line2, line3, line4 = self.lyrics      
+        # print(line1.upper())
+        # print(line2.upper())
+        # print(line3.upper())
+        # print(line4.upper())
         return self
 
 song1 = Song(title="Neverending Story", author="Limahl", lyrics = ("Reach the stars", "Fly a fantasy", "Dream a dream", "And what you see will be"))
