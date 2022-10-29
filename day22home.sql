@@ -1,57 +1,124 @@
 -- ex6
+select * from movies
+inner join boxoffice
+on movies.id = boxoffice.movie_id;
 
-SELECT * FROM movies
-INNER JOIN boxoffice
-ON movies.id = boxoffice.movie_id;
+select * from movies
+inner join boxoffice
+on movies.id = boxoffice.movie_id
+where international_sales > domestic_sales;
 
-SELECT * FROM movies
-INNER JOIN boxoffice
-ON movies.id = boxoffice.movie_id
-WHERE international_sales > domestic_sales;
-
-SELECT * FROM movies
-INNER JOIN boxoffice
-ON movies.id = boxoffice.movie_id
-ORDER BY rating DESC;
-
+select * from movies
+inner join boxoffice
+on movies.id = boxoffice.movie_id
+order by rating desc;
 
 -- ex7
-SELECT DISTINCT Building_name FROM Buildings
-LEFT JOIN Employees
-ON Buildings.Building_name = Employees.Building
-WHERE Role NOT LIKE 'NULL';
+select distinct building_name from buildings
+left join employees
+on buildings.building_name = employees.building
+where role not like 'null';
 
-SELECT DISTINCT Building_name, Capacity FROM Buildings;
+select distinct building_name, capacity from buildings;
 
--- SELECT Building_name, DISTINCT Role FROM Buildings
--- FULL JOIN employees
--- ON buildings.building_name = employees.building;
--- -- forgot full join doesn't work here..
--- SELECT DISTINCT Building, Employees.Role FROM Buildings
--- LEFT JOIN Employees
--- ON Buildings.Building_name = Employees.Building
--- WHERE Role LIKE '%' OR IS NULL;
--- -- incomplete - not sure how to include empty buildings
+select distinct building_name, role from buildings
+left join employees
+on buildings.building_name = employees.building;
 
 -- ex8
-SELECT Name, Role FROM Employees
-WHERE Building IS NULL;
+select name, role from employees
+where building is null;
 
-SELECT DISTINCT Building_name FROM Buildings
-LEFT JOIN Employees
-ON Buildings.Building_name = Employees.Building
-WHERE Name IS NULL;
+select distinct building_name from buildings
+left join employees
+on buildings.building_name = employees.building
+where name is null;
 
 -- ex9
-SELECT Title, (Domestic_sales + International_sales) / 1000000 AS Combined_sales
-FROM movies
-JOIN Boxoffice
-ON Movies.Id = Boxoffice.Movie_id;
+select title, (domestic_sales + international_sales) / 1000000 as combined_sales
+from movies
+join boxoffice
+on movies.id = boxoffice.movie_id;
 
-SELECT Title, Rating * 10 AS Rating_perc
-FROM Movies
-JOIN Boxoffice
-ON movies.Id = Boxoffice.Movie_id; 
+select title, rating * 10 as rating_perc
+from movies
+join boxoffice
+on movies.id = boxoffice.movie_id; 
 
-SELECT Title, Year FROM Movies
-WHERE Year % 2 = 0;
+select title, year from movies
+where year % 2 = 0;
+
+-- ex10
+select max(years_employed) from employees;
+
+select role, avg(years_employed)
+from employees
+group by role;
+
+select building, sum(years_employed)
+from employees
+group by building;
+
+-- ex11
+select count(role) from employees
+where role like 'artist';
+
+select role, count(name)
+from employees
+group by role;
+
+select sum(years_employed)
+from employees
+group by role
+having role like 'engineer';
+
+-- ex12
+select director, count(title) from movies
+group by director;
+
+select director, sum(domestic_sales + international_sales) as Total_sales
+from movies
+join boxoffice
+on movies.id = boxoffice.movie_id
+group by director;
+
+-- ex13
+insert into movies
+(title, director, year, length_minutes)
+values('Toy Story 4', 'Josh Cooley', 2019, 100);
+
+insert into boxoffice
+values(15, 8.7, 340000000, 270000000); 
+-- unsure if somehow could pass an id value of 15 from movies table
+
+-- ex14
+update movies
+set director = 'John Lasseter'
+where title = "A Bug's Life";
+
+update movies
+set year = 1999
+where title = 'Toy Story 2';
+
+-- ex15
+delete from movies
+where year < 2005; 
+
+delete from movies
+where director = "Andrew Stanton";
+
+-- ex16
+create table if not exists Database
+(Name text, Version float, Download_count int);
+
+-- ex17
+alter table movies
+add Aspect_ratio float;
+
+alter table movies
+add Language text default 'English';
+
+-- ex18
+drop table if exists movies;
+
+drop table if exists boxoffice;
