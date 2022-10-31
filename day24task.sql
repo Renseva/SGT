@@ -9,4 +9,4 @@ group by country;
 select name, count(trackid) as Playlist_tracks from playlists p 
 full join playlist_track pt 
 on p.PlaylistId = pt.PlaylistId 
-group by Name;
+group by Name; -- better by id as Name may be not unique
