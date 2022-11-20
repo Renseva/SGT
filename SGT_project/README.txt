@@ -6,7 +6,7 @@ which contain information about clients and orders respectively.
 
 I used Jupyter notebook to write a program that allows to view or export data contained in the database,
 add, update or delete records, and generate basic invoice documents.
-In retrospective, as such was my first project of this kind, I appear to have set too ambiguous goals for the time I had,
+In retrospective, as such was my first project of this kind, I appear to have set too ambitious goals for the time I had,
 which is reflected in the long TODO list within the code, not entirely uniform style and the application requiring more
 user data entry than expected. It also has virtually no error handling, and, since at the time of writing,
 I wasn't up to speed with Pandas, relies more on SQL queries than it would otherwise.
