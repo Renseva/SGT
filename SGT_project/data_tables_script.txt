@@ -1,0 +1,40 @@
+-- script for table creation. Couldn't find the right syntax for autoincrement on primary keys
+-- added columns 'Unit' and InvNo (varchar(20)) to Orders table later directly via DBeaver
+
+create table Clients
+('ClientID' integer Primary KEY,
+'Name' varchar(100) not NULL DEFAULT '',
+'Details' varchar(300) not NULL DEFAULT '',
+'Address' varchar(200) DEFAULT '',
+'Phone' varchar(100) DEFAULT '',
+'Notes' varchar(500) DEFAULT '');
+
+create table Orders
+('#' integer Primary key,
+'Date' varchar(20) DEFAULT 'YYYY-MM-DD',
+'ClientID' integer,
+'DateID' varchar(20) default 'YYMMDD-#',
+'AgrNo' varchar(20) DEFAULT '??YYYY-#',
+'AgrType' varchar(20) check (AgrType = 'doc' or AgrType = 'email' or AgrType = 'word'),
+'TypeID' varchar(20) check(TypeID = 'V' or TypeID = 'DA' or TypeID = 'M'),
+'Description' varchar(400) DEFAULT '',
+'Price €' decimal(7,2) DEFAULT 0,
+'OrderSt' varchar(20) check (OrderSt = 'none' or OrderSt = 'conf' or OrderSt = 'pre' or OrderSt = 'full' or OrderSt = 'paid'),
+constraint hmmm
+foreign key (ClientID)
+references Clients(ClientID));
+
+insert into Clients
+values (1, 'Ala Alan','Reg No 182695', 'Ala address', 'Ala Phone', 'notes about Ala'),
+(2, 'Betty Betts', 'Reg No 184445', 'Betty address', 'Betty Phone', 'notes about Betty'),
+(3, 'Mark Kram', 'Reg No 225815', 'Mark address, email', ' Mark Phone', 'notes about Mark'),
+(4, 'Jeff Den', 'Reg No 245876', 'Jeff address', ' Jeff Phone', 'notes about Jeff, Jeffs email'),
+(5, 'Something&Co', 'Reg No 05426987', 'Something&Co address, email', 'Something&Co Phone', 'notes about Something');
+
+insert into Orders
+values(1, '2021.10.22', 2, '211022-2', 'BB2021-1', 'email', 'V', 'Translation EN-LT, Some text', 20, 'paid'),
+(2, '2021.10.28', 1, '211028-1', 'AA2021-1', 'doc', 'V', 'Translation EN-LT, Text1', 45, 'paid'),
+(3, '2021.11.14', 3, '211114-1', 'MK2021-1', 'email', 'V', 'Translation EN-LT, Text2', 34, 'pre'),
+(4, '2021.12.06', 5, '211206-1', 'SC2021-1', 'doc', 'DA', 'Data analysis', 70, 'paid'),
+(5, '2022.02.21', 4, '220221-1', 'JD2021-1', 'email', 'V', 'Translation LT-EN, Text ABC', 15, 'full'),
+(6, '2022.03.09', 5, '220309-1', 'SC2022-1', 'doc', 'DA', 'Data Analysis & Consultation', 120, 'pre');
